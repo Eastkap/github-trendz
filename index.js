@@ -54,10 +54,17 @@ Thanks ${author}`
       }
     })
   }
-  init = true;
   console.log('one round')
 }
 
-
-main()
-setInterval(main, 1000 * 60 * 5)
+(() => {
+  while (true) {
+    try {
+      await main()
+      await new Promise(resolve => setTimeout(resolve, 1000 * 60 * 5));
+      init = true;
+    } catch (err) {
+      console.warn(err)
+    }
+  }
+})()
