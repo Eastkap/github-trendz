@@ -33,6 +33,7 @@ ${description}
 
 ⭐${stars} 🍴${forks} ✨${currentPeriodStars}
 Thanks ${author}`
+          console.log(text)
           if (text.length > 280) {
             text = `📈 project : ${name}
 
@@ -54,13 +55,13 @@ Thanks ${author}`
       }
     })
   }
-  console.log('one round')
 }
 
-(() => {
+(async () => {
   while (true) {
     try {
       await main()
+      console.log('one round')
       await new Promise(resolve => setTimeout(resolve, 1000 * 60 * 5));
       init = true;
     } catch (err) {
