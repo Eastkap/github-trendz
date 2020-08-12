@@ -9,6 +9,8 @@ let {
 } = config;
 languages = [...languages.split(','), ''] // also including all
 
+const scheduler = tocall=>setTimeout(tocall(), Math.round(Math.random()* 86400)*1000)
+
 const main = async () => {
   for (const language of languages) {
     console.log(language);
@@ -36,7 +38,6 @@ Available at ${url}
 
 ⭐${stars} 🍴${forks} ✨${currentPeriodStars}
 Thanks ${author}`
-          console.log(text)
           if (text.length > 280) {
             text = `📈 project : ${name}
 
@@ -53,9 +54,9 @@ Thanks ${author}`
               text = `${text}${newlined ? ' ' : '\n'}${hashtag}`
             }
           }
-          tweet({
+          scheduler( ()=>tweet({
             text
-          })
+          }))
         }
       }
     })
