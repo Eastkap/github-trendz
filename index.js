@@ -7,7 +7,7 @@ let init = false;
 let {
   languages
 } = config;
-languages = languages.split(',')
+languages = [...languages.split(','), ''] // also including all
 
 const main = async () => {
   for (const language of languages) {
@@ -25,17 +25,22 @@ const main = async () => {
             description,
             stars,
             forks,
+            url,
             currentPeriodStars
           } = trending;
           let text = `📈 project : ${name}
 
 ${description}
 
+Available at ${url}
+
 ⭐${stars} 🍴${forks} ✨${currentPeriodStars}
 Thanks ${author}`
           console.log(text)
           if (text.length > 280) {
             text = `📈 project : ${name}
+
+Available at ${url}
 
 ⭐${stars} 🍴${forks} ✨${currentPeriodStars}
 Thanks ${author}`
